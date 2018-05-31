@@ -1,0 +1,55 @@
+{% extends 'usuario/index.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="my-auto">
+            <h2 class="mb-0">Login</h2>
+        </div>
+
+        <br>
+        <br>
+
+
+        <form action="{% url 'usuario:validar'  %}" method="post">
+            {% csrf_token %}
+
+            {{  form.non_field_errors }}
+
+            <div class="form-group row">
+                <label for="{{ form.username.id_for_label }}" class="col-sm-2 col-form-label">Usuario</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="username" placeholder="Usuario" required>
+                    {{ form.username.errors }}
+                </div>
+            </div>
+
+            <br>
+
+            <div class="form-group row">
+                <label for="{{ form.password.id_for_label }}" class="col-sm-2 col-form-label">Senha</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" name="password" placeholder="Senha" required>
+                    {{ form.password.errors }}
+                </div>
+            </div>
+
+            <div class="col">
+                {% if messages %}
+                    <p class="alert alert-danger">
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                    </p>
+
+                {% endif %}
+            </div>
+
+
+
+            <button class="btn btn-info" type="submit">Login</button>
+        </form>
+
+    </div>
+
+{% endblock content %}

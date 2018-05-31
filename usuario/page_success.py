@@ -1,0 +1,1 @@
+SUCESSO = 'store:home'
